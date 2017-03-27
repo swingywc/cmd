@@ -1,0 +1,12 @@
+#!/bin/bash
+
+goto() {
+  if [[ $@ == "{{variable_name}}" ]]; then
+    command cd {{folder_location}}
+  elif [[ $@ == "{{variable_name2}}" ]]; then
+    command cd {{folder_location2}}
+  else
+    echo "No Project Code Found."
+  fi
+}
+

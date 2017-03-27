@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ $@ == "" ]]; then
+  echo "Branch name is not specified."
+  exit 1;
+fi
+
+STATUS="$(command git status --porcelain)"
+
+if [[ "${STATUS}" != "" ]]; then
+git stash &> /dev/null
+fi
+
+git checkout $@ &> /dev/null
+
+if [[ $? != 0 ]]; then
+  echo "Cannot find the branch."
+else
+  echo "Changing branch and pulling the latest..."
+  command git pull
+fi
+
+if [[ "${STATUS}" != "" ]]; then
+git stash pop &> /dev/null
+fi

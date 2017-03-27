@@ -1,0 +1,9 @@
+#!/bin/bash
+
+server() {
+  if [[ $@ == "{{variable_name}}" ]]; then
+    command ssh {{username}}@{{server_ip}} -p 22
+  else
+    echo "No such server find."
+  fi
+}

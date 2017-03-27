@@ -1,0 +1,11 @@
+#!/bin/bash
+
+STATUS="$(command git status --porcelain)"
+
+if [[ "${STATUS}" != "" ]]; then
+git stash
+git pull
+git stash pop
+else
+echo "No Locals Change. Aborting Renew."
+fi
